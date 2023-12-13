@@ -1,8 +1,44 @@
+USE TargetMartII;
+GO
 
+/*********************************************************/
+/******************    Schema DDL       ******************/
+/*********************************************************/
 
+IF NOT EXISTS (SELECT * FROM sys.schemas WHERE name = 'dim' ) 
+BEGIN
+	EXEC sp_executesql N'CREATE SCHEMA dim AUTHORIZATION dbo;'
+END
+;
 
+GO
 
+IF NOT EXISTS (SELECT * FROM sys.schemas WHERE name = 'stg' ) 
+BEGIN
+	EXEC sp_executesql N'CREATE SCHEMA stg AUTHORIZATION dbo;'
+END
+;
 
+GO
+
+IF NOT EXISTS (SELECT * FROM sys.schemas WHERE name = 'f' ) 
+BEGIN
+	EXEC sp_executesql N'CREATE SCHEMA f AUTHORIZATION dbo;'
+END
+;
+
+GO
+
+IF NOT EXISTS (SELECT * FROM sys.schemas WHERE name = 'rpt' ) 
+BEGIN
+	EXEC sp_executesql N'CREATE SCHEMA rpt AUTHORIZATION dbo;'
+END
+;
+
+GO
+/*********************************************************/
+/******************  Customer DIM DDL   ******************/
+/*********************************************************/
 
 IF NOT EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = 'dim' AND TABLE_NAME = 'Customers')
 BEGIN
@@ -28,7 +64,9 @@ END
 
 GO
 
-
+/*********************************************************/
+/****************** Calendar DIM Script ******************/
+/*********************************************************/
 
 IF NOT EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = 'dim' AND TABLE_NAME = 'Calendar')
 BEGIN
@@ -60,7 +98,9 @@ END
 
 GO
 
-
+/*********************************************************/
+/******************  Shipper DIM DDL    ******************/
+/*********************************************************/
 IF NOT EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = 'dim' AND TABLE_NAME = 'Shipper')
 BEGIN
 -- Create the Calendar table
@@ -77,6 +117,9 @@ END
 
 GO
 
+/*********************************************************/
+/******************  Products DIM DDL   ******************/
+/*********************************************************/
 
 IF NOT EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = 'dim' AND TABLE_NAME = 'Products')
 BEGIN
@@ -103,7 +146,9 @@ END
 ;
 GO
 
-
+/*********************************************************/
+/******************  Employees DIM DDL   ******************/
+/*********************************************************/
 IF NOT EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = 'dim' AND TABLE_NAME = 'Employees')
 BEGIN
 CREATE TABLE dim.Employees(
@@ -123,7 +168,21 @@ END
 
 GO
 
+/*********************************************************/
+/*********************************************************/
+/*********************************************************/
+/******************  Fact Table Builds  ******************/
+/*********************************************************/
+/*********************************************************/
+/*********************************************************/
 
+
+
+/*********************************************************/
+/******************  OrderPerf f.Table  ******************/
+/*********************************************************/
+
+-- OrderID, OrderDate, Customer, Freight(f)
 IF EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = 'f' AND TABLE_NAME = 'OrderPerf')
 BEGIN 
 	DROP TABLE f.OrderPerf;
@@ -173,6 +232,9 @@ ADD CONSTRAINT FK_ORDtoEMP
 	 REFERENCES dim.Employees(EmployeeID)
 ;
 
+/*********************************************************/
+/******************  ProductsPerf f.Table  ******************/
+/*********************************************************/
 
 IF EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = 'f' AND TABLE_NAME = 'ProductPerf')
 BEGIN 
