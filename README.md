@@ -12,6 +12,7 @@ Markdown cells explaining the process used within your script we built in class 
 a.  the DDL (table builds) -  for the MDL and  for the SQL Code itself  
     [BuildTablesDDL.ipynb](https://github.com/ekysss/DatabaseDesign/blob/1f6f3eeb4a6fbafbd72406c0d5076d5e3d0f419b/BuildTablesDDL.ipynb)
 
-b. the Data Loading Scripts -  for the MDL and for the SQL Code itself  [DataLoader.ipynb](https://github.com/ekysss/DatabaseDesign/blob/27774d56767f6a4ac73a885f3f536a59b75e4dd3/DataLoader.ipynb)
+b. the Data Loading Scripts -  for the MDL and for the SQL Code itself  
+    [DataLoader.ipynb](https://github.com/ekysss/DatabaseDesign/blob/27774d56767f6a4ac73a885f3f536a59b75e4dd3/DataLoader.ipynb)
 
 c. Using draw.io create a diagram of the datamart and include it on your GitHub repository along with the .ipynb(s) as shown above
