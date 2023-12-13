@@ -1,7 +1,7 @@
 # DatabaseDesign
 This project sums up what we covered in Database Design.
 
-##Assignment - GitHub Repo:
+## Assignment - GitHub Repo:
 
 Link to your online GitHub repo containing the following:
 
