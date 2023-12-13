@@ -1,4 +1,4 @@
-# DatabaseDesign
+# Database Design
 This project sums up what we covered in Database Design.
 
 ## Assignment - GitHub Repo:
